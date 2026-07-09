@@ -62,16 +62,21 @@ namespace Projeto_Controle_Gastos
         public static void DeletarUsuario()
         {
             Console.WriteLine("Escolha o usuário que deseja deletar:");
+            if (usuarios.Count == 0) //Verifica se existe usuarios, caso não retorna ao menu
+            {
+                Console.WriteLine("Nenhum usuário cadastrado ainda.\n");
+                return;
+            }
             ListarUsuarios();
             Console.Write("Digite o identificador do usuário: ");
             string? identificadorTexto = Console.ReadLine();
-            
+
         }
 
         //Função de listagem de usuarios
         public static void ListarUsuarios()
         {   
-            if (usuarios.Count == 0) //Verifica se existem usuarios
+            if (usuarios.Count == 0) //Verifica se existe usuarios, caso não retorna ao menu
             {
                 Console.WriteLine("Nenhum usuário cadastrado ainda.\n");
                 return;

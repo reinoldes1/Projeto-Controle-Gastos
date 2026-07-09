@@ -12,3 +12,4 @@
 /home/reinoldes/Documentos/Projetos/Projeto-Controle-Gastos/ConsoleApp1/obj/Debug/net10.0/ConsoleApp1.pdb
 /home/reinoldes/Documentos/Projetos/Projeto-Controle-Gastos/ConsoleApp1/obj/Debug/net10.0/ConsoleApp1.genruntimeconfig.cache
 /home/reinoldes/Documentos/Projetos/Projeto-Controle-Gastos/ConsoleApp1/obj/Debug/net10.0/ref/ConsoleApp1.dll
+/home/reinoldes/Documentos/Projetos/Projeto-Controle-Gastos/ConsoleApp1/obj/Debug/net10.0/ConsoleApp1.sourcelink.json
