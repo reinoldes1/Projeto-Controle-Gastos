@@ -45,31 +45,60 @@ namespace Projeto_Controle_Gastos
                 Console.Write("Digite a idade: ");
                 string? idadeTexto = Console.ReadLine();
 
-                if (int.TryParse(idadeTexto, out idade) && idade >= 0)
+                if (!int.TryParse(idadeTexto, out idade) || idade >= 0)
                 {
+                    Console.WriteLine("Idade inválida. Digite um número inteiro maior ou igual a zero.\n");
+                    continue;
+                }
+                else
+                {
+                    usuario.Idade = idade;
+
+                    usuarios.Add(usuario);
+                    Console.WriteLine($"Usuário '{usuario.Nome}' cadastrado com sucesso!\n");
                     break;
                 }
-
-                Console.WriteLine("Idade inválida. Digite um número inteiro maior ou igual a zero.\n");
             }
 
-            usuario.Idade = idade;
-
-            usuarios.Add(usuario);
-            Console.WriteLine($"Usuário '{usuario.Nome}' cadastrado com sucesso!\n");
         }
 
         public static void DeletarUsuario()
         {
-            Console.WriteLine("Escolha o usuário que deseja deletar:");
-            if (usuarios.Count == 0) //Verifica se existe usuarios, caso não retorna ao menu
+            int id;
+            while (true)
             {
-                Console.WriteLine("Nenhum usuário cadastrado ainda.\n");
-                return;
+                Console.WriteLine("Escolha o usuário que deseja deletar:");
+                if (usuarios.Count == 0) //Verifica se existe usuarios, caso não retorna ao menu
+                {
+                    Console.WriteLine("Nenhum usuário cadastrado ainda.\n");
+                    return;
+                }
+
+                ListarUsuarios();
+                Console.Write("Digite o identificador do usuário: ");
+                
+                string? identificadorTexto = Console.ReadLine();
+                
+                if (!int.TryParse(identificadorTexto, out id) || id < 0)
+                {
+                    System.Console.WriteLine("Id invalido\n");
+                    continue;
+                }
+
+                var usuario = usuarios.Find(u => u.Identificador == id);
+                
+                if (usuario == null)
+                {
+                    System.Console.WriteLine("Usuario não encontrado\n");
+                    continue;
+                }
+                else
+                {
+                    usuarios.Remove(usuario);
+                    Console.WriteLine($"Usuário '{usuario.Nome}' deletado com sucesso!\n");
+                    break;
+                }
             }
-            ListarUsuarios();
-            Console.Write("Digite o identificador do usuário: ");
-            string? identificadorTexto = Console.ReadLine();
 
         }
 
