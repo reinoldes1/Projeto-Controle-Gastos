@@ -19,19 +19,19 @@ namespace Projeto_Controle_Gastos
         public string Nome { get; set; } = string.Empty;
         public int Idade { get; set; }
 
-        private static readonly List<Usuario> usuarios = new();
+        public static readonly List<Usuario> usuarios = new(); //cria lista de usuarios em memoria
 
-        public static void CadastrarUsuario()
+        public static void CadastrarUsuario() //função cadastro de usuarios
         {
             var usuario = new Usuario();
             string? nome;
 
-            do
+            do //loop do input do nome do usuario 
             {
                 Console.Write("Digite o nome: ");
                 nome = Console.ReadLine();
 
-                if (string.IsNullOrWhiteSpace(nome))
+                if (string.IsNullOrWhiteSpace(nome)) // caso o nome esteja vazio retorna erro
                 {
                     Console.WriteLine("O nome não pode ficar vazio. Tente novamente.\n");
                 }
@@ -40,12 +40,12 @@ namespace Projeto_Controle_Gastos
             usuario.Nome = nome;
 
             int idade;
-            while (true)
+            while (true) //loop do input da idade
             {
                 Console.Write("Digite a idade: ");
                 string? idadeTexto = Console.ReadLine();
 
-                if (!int.TryParse(idadeTexto, out idade) || idade >= 0)
+                if (!int.TryParse(idadeTexto, out idade) || idade < 0) //se não conseguir o parse ou a idade for negativa
                 {
                     Console.WriteLine("Idade inválida. Digite um número inteiro maior ou igual a zero.\n");
                     continue;
@@ -54,7 +54,7 @@ namespace Projeto_Controle_Gastos
                 {
                     usuario.Idade = idade;
 
-                    usuarios.Add(usuario);
+                    usuarios.Add(usuario); //Adiciona o usuario a lista
                     Console.WriteLine($"Usuário '{usuario.Nome}' cadastrado com sucesso!\n");
                     break;
                 }
@@ -74,27 +74,27 @@ namespace Projeto_Controle_Gastos
                     return;
                 }
 
-                ListarUsuarios();
+                ListarUsuarios(); //lista os usuarios
                 Console.Write("Digite o identificador do usuário: ");
                 
                 string? identificadorTexto = Console.ReadLine();
                 
-                if (!int.TryParse(identificadorTexto, out id) || id < 0)
+                if (!int.TryParse(identificadorTexto, out id) || id < 0) //Tenta o parse e verifica se o id não é menor que 0
                 {
                     System.Console.WriteLine("Id invalido\n");
                     continue;
                 }
 
-                var usuario = usuarios.Find(u => u.Identificador == id);
+                var usuario = usuarios.Find(u => u.Identificador == id); //Procura o Identificador
                 
-                if (usuario == null)
+                if (usuario == null) //Se não encontrar o Id retorna erro
                 {
                     System.Console.WriteLine("Usuario não encontrado\n");
                     continue;
                 }
                 else
                 {
-                    usuarios.Remove(usuario);
+                    usuarios.Remove(usuario); //Remove usuario da lista
                     Console.WriteLine($"Usuário '{usuario.Nome}' deletado com sucesso!\n");
                     break;
                 }
